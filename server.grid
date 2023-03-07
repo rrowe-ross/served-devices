@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" keepalive="false">
+<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" jsonport="5254" keepalive="false">
    <params>
       <param access="1" maxlength="0" name="SUPPLIER_NAME" oid="0x0102" stream="false" type="STRING" value="ROCKET SURGERY // ROSS VIDEO" widget="default"/>
-      <param access="1" maxlength="0" name="PRODUCT_NAME" oid="0x0105" stream="false" type="STRING" value="SDP" widget="default"/>
-      <param access="1" maxlength="0" name="PRODUCT_NAME_OVERRIDE" oid="0xFF01" stream="false" type="STRING" value="Params Panel" widget="text-display"/>
+      <param access="1" maxlength="0" name="PRODUCT_NAME" oid="0x0105" stream="false" type="STRING" value="SVR" widget="default"/>
+      <param access="1" maxlength="0" name="PRODUCT_NAME_OVERRIDE" oid="0xFF01" stream="false" type="STRING" value="Server Panel" widget="text-display"/>
       <param access="1" constrainttype="INT_NULL" name="DISPLAY_OPTIONS" oid="0xFF0B" precision="0" stream="false" type="INT16_ARRAY" value="0;1" widget="default"/>
       <param access="1" maxlength="0" name="Tree URL" oid="0xFF0D" stream="false" type="STRING" value="eo://0x01" widget="text"/>
       <param access="1" maxlength="0" name="Device Icon" oid="0xFE06" stream="false" type="STRING" value="eo://0x2" widget="default"/>
@@ -21,7 +21,8 @@
       <eo oid="0x2" type="image-data" url="Images\RS_ICON_SMALL_ROUNDED_BGRD_16.png"/>
       <eo oid="0x3" type="image-data" url="Images\ross-r-radius-grey.png"/>
       <eo oid="0x10" type="xml" url="tree-xml-context.xml"/>
-      <eo oid="0x11" type="xml" url="client.grid"/>
+      <eo oid="0x11" type="xml" url="client-1.grid"/>
+      <eo oid="0x12" type="xml" url="client-2.grid"/>
    </externalobjects>
    <context contexttype="opengear" dblinqport="2223" id="ctx" jsonport="5255" name="context">
       <params>
@@ -29,7 +30,7 @@
          <param access="1" constrainttype="INT_NULL" name="DISPLAY_OPTIONS" oid="0xFF0B" precision="0" stream="false" type="INT16_ARRAY" value="0;1" widget="default"/>
          <param access="1" maxlength="0" name="PRODUCT_NAME" oid="0x0105" stream="false" type="STRING" value="CTX" widget="default"/>
          <param access="1" maxlength="0" name="PRODUCT_NAME_OVERRIDE" oid="0xFF01" stream="false" type="STRING" value="Context Panel" widget="text-display"/>
-         <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="0" widget="radio-toggle">
+         <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="1" widget="radio-toggle">
             <constraint key="0">Ow</constraint>
             <constraint key="1">Now</constraint>
             <constraint key="2">Brown</constraint>
@@ -445,7 +446,7 @@ if (event.isMessageEvent()) {
       <param bottom="5" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
    </abs>
    <abs height="75" left="5" top="195" width="295">
-      <label height="30" left="5" name="Global Params" right="5" style="txt-align:center;" top="5"/>
+      <label height="30" left="5" name="Global/Context Params" right="5" style="txt-align:center;" top="5"/>
       <param bottom="5" contextid="ctx" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
    </abs>
 </abs>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" keepalive="false" style="">
+<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" keepalive="false" style="bg#3D2709;">
    <params>
       <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="3" widget="radio-toggle">
          <constraint key="0">Ow</constraint>

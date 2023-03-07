@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <properties version="1.0">
      <children>
+          <child>
+               <entry key="equipmentType">opengear-oglml</entry>
+               <entry key="child-id">one</entry>
+               <entry key="node-name">Client Panel 1</entry>
+               <entry key="config-url">eo://0x11</entry>
+          </child>
+          <child>
+               <entry key="equipmentType">opengear-oglml</entry>
+               <entry key="child-id">two</entry>
+               <entry key="node-name">Client Panel 2</entry>
+               <entry key="config-url">eo://0x12</entry>
+          </child>
      </children>
 </properties>
