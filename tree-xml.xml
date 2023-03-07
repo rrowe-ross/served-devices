@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties version="1.0">
+     <children>
+          <child>
+               <entry key="equipmentType">opengear-oglml</entry>
+               <entry key="child-id">one</entry>
+               <entry key="node-name">Devices</entry>
+               <entry key="config-url">eo://0x11</entry>
+          </child>
+     </children>
+</properties>
