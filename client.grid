@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" id="_top" keepalive="false" style="">
+   <params>
+      <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="3" widget="radio-toggle">
+         <constraint key="0">Ow</constraint>
+         <constraint key="1">Now</constraint>
+         <constraint key="2">Brown</constraint>
+         <constraint key="3">Cow</constraint>
+      </param>
+   </params>
+   <meta>
+      <context contexttype="opengear" id="ctx" objectid="CTX&lt;br&gt;Slot 0&lt;br&gt;CTX" objecttype="CTX" subscriptions="true">
+         <meta>
+            <subscription oids="toggle.demo"/>
+         </meta>
+      </context>
+   </meta>
+   <abs height="75" left="5" top="5" width="295">
+      <label height="30" left="5" name="Local Params" right="5" style="txt-align:center;" top="5"/>
+      <param bottom="5" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
+   </abs>
+   <abs height="75" left="5" top="85" width="295">
+      <label height="30" left="5" name="Global Params" right="5" style="txt-align:center;" top="5"/>
+      <param bottom="5" contextid="ctx" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
+   </abs>
+</abs>

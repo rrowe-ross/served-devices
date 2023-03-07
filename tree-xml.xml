@@ -4,7 +4,7 @@
           <child>
                <entry key="equipmentType">opengear-oglml</entry>
                <entry key="child-id">one</entry>
-               <entry key="node-name">Devices</entry>
+               <entry key="node-name">Client</entry>
                <entry key="config-url">eo://0x11</entry>
           </child>
      </children>

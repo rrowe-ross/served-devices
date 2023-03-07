@@ -7,21 +7,40 @@
       <param access="1" maxlength="0" name="Tree URL" oid="0xFF0D" stream="false" type="STRING" value="eo://0x01" widget="text"/>
       <param access="1" maxlength="0" name="Device Icon" oid="0xFE06" stream="false" type="STRING" value="eo://0x2" widget="default"/>
       <param access="1" maxlength="0" name="Device Icon" oid="0xFF0C" stream="false" type="STRING" value="eo://0x2" widget="default"/>
-      <param access="1" maxlength="0" name="000.SYS.HOST" oid="000.SYS.HOST" stream="true" type="STRING" value="192.168.0.255" widget="default"/>
+      <param access="1" maxlength="0" name="000.SYS.HOST" oid="000.SYS.HOST" stream="true" type="STRING" value="192.168.0.5" widget="default"/>
       <param access="1" maxlength="0" name="000.SYS.PORT" oid="000.SYS.PORT" stream="true" type="STRING" value="5555" widget="default"/>
+      <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="0" widget="radio-toggle">
+         <constraint key="0">Ow</constraint>
+         <constraint key="1">Now</constraint>
+         <constraint key="2">Brown</constraint>
+         <constraint key="3">Cow</constraint>
+      </param>
    </params>
-   <context contexttype="opengear" dblinqport="2223" jsonport="5255">
-      <params/>
-   </context>
    <externalobjects>
-      <eo oid="0x1" type="xml" url="tree-xml.xml"/>
+      <eo oid="0x1" type="xml" url="tree-xml-server.xml"/>
       <eo oid="0x2" type="image-data" url="Images\RS_ICON_SMALL_ROUNDED_BGRD_16.png"/>
-      <eo oid="0x11" type="xml" url="Dependencies\client.grid"/>
+      <eo oid="0x3" type="image-data" url="Images\ross-r-radius-grey.png"/>
+      <eo oid="0x10" type="xml" url="tree-xml-context.xml"/>
+      <eo oid="0x11" type="xml" url="client.grid"/>
    </externalobjects>
+   <context contexttype="opengear" dblinqport="2223" id="ctx" jsonport="5255" name="context">
+      <params>
+         <param access="1" maxlength="0" name="SUPPLIER_NAME" oid="0x0102" stream="false" type="STRING" value="ROCKET SURGERY // ROSS VIDEO" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="DISPLAY_OPTIONS" oid="0xFF0B" precision="0" stream="false" type="INT16_ARRAY" value="0;1" widget="default"/>
+         <param access="1" maxlength="0" name="PRODUCT_NAME" oid="0x0105" stream="false" type="STRING" value="CTX" widget="default"/>
+         <param access="1" maxlength="0" name="PRODUCT_NAME_OVERRIDE" oid="0xFF01" stream="false" type="STRING" value="Context Panel" widget="text-display"/>
+         <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="0" widget="radio-toggle">
+            <constraint key="0">Ow</constraint>
+            <constraint key="1">Now</constraint>
+            <constraint key="2">Brown</constraint>
+            <constraint key="3">Cow</constraint>
+         </param>
+      </params>
+   </context>
    <listener autostart="true" bottom="928" delimiter="0A" delimitertype="bytes" id="LST.PROXY" left="0" listenport="%value[000.SYS.PORT][0]%" right="115" top="0">
       <task tasktype="ogscript">var generateConnection = {
    frameList: {
-      broadcastEquipment: function (id, name, host, port, image) {
+      broadcastEquipment: function(id, name, host, port, image) {
          var data = '';
 
          data += '&lt;child&gt;\n';
@@ -32,7 +51,7 @@
          data += '&lt;entry key="node-name"&gt;' + name + '&lt;/entry&gt;\n';
          data += '&lt;entry key="node-id"&gt;' + id + '&lt;/entry&gt;\n';
 
-         if (image != '' &amp;&amp; image != null) {
+         if ((image != '') &amp;&amp; (image != null)) {
             data += '&lt;entry key="node-image-url"&gt;' + image + '&lt;/entry&gt;\n';
          }
          data += '&lt;/child&gt;\n';
@@ -40,7 +59,7 @@
          return data;
       },
 
-      carbonite: function (id, name, host, port, image) {
+      carbonite: function(id, name, host, port, image) {
          var data = '';
 
          data += '&lt;child&gt;\n';
@@ -53,7 +72,7 @@
          //data += '&lt;entry key="rememberConnection"&gt;true&lt;/entry&gt;\n';
          data += '&lt;entry key="discoveryType"&gt;SLP&lt;/entry&gt;\n';
 
-         if (image != '' &amp;&amp; image != null) {
+         if ((image != '') &amp;&amp; (image != null)) {
             data += '&lt;entry key="node-image-url"&gt;' + image + '&lt;/entry&gt;\n';
          }
          data += '&lt;/child&gt;\n';
@@ -61,7 +80,7 @@
          return data;
       },
 
-      xpression: function (id, name, host, port, image) {
+      xpression: function(id, name, host, port, image) {
          var data = '';
 
          data += '&lt;child&gt;\n';
@@ -88,7 +107,7 @@
          return data;
       },
 
-      structure: function (id, name, url, image) {
+      structure: function(id, name, url, image) {
          var data = '';
 
          data += '&lt;child&gt;\n';
@@ -97,7 +116,7 @@
          data += '&lt;entry key="node-name"&gt;' + name + '&lt;/entry&gt;\n';
          data += '&lt;entry key="node-id"&gt;' + id + '&lt;/entry&gt;\n';
 
-         if (image != '' &amp;&amp; image != null) {
+         if ((image != '') &amp;&amp; (image != null)) {
             data += '&lt;entry key="node-image-url"&gt;' + image + '&lt;/entry&gt;\n';
          }
          data += '&lt;/child&gt;\n';
@@ -105,7 +124,7 @@
          return data;
       },
 
-      child: function (str) {
+      child: function(str) {
          var data = '';
 
          data += '&lt;child&gt;\n';
@@ -115,7 +134,7 @@
          return data;
       },
 
-      children: function (str) {
+      children: function(str) {
          var data = '';
 
          data += '&lt;children&gt;\n';
@@ -125,7 +144,7 @@
          return data;
       },
 
-      properties: function (str) {
+      properties: function(str) {
          var data = '';
 
          data += '&lt;properties&gt;\n';
@@ -135,7 +154,7 @@
          return data;
       },
 
-      xml: function (str) {
+      xml: function(str) {
          var data = '';
 
          data += '&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n';
@@ -146,7 +165,7 @@
    },
 
    connectionProps: {
-      base: function (host, port) {
+      base: function(host, port) {
          var data = '';
 
          data = '&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;\n';
@@ -167,8 +186,8 @@
    },
 
    treeElement: {
-      connectionSettings: function (str) {
-         var data = '';
+      connectionSettings: function(str) {
+            var data = '';
 
          data += '&lt;ConnectionSettingsTree&gt;\n';
          data += str + '\n';
@@ -177,7 +196,7 @@
          return data;
       },
 
-      xml: function (str) {
+      xml: function(str) {
          var data = '';
 
          data += '&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n';
@@ -187,7 +206,7 @@
       },
 
       xpression: {
-         base: function (str) {
+         base: function(str) {
             var data = '';
 
             data += '&lt;treeElement FactoryID="com.rossvideo.xpression.rice.tree.XPressionFrameFactory"&gt;\n';
@@ -197,7 +216,7 @@
             return data;
          },
 
-         dvc: function (id, name, host, port, image) {
+         dvc: function(id, name, host, port, image) {
             var data = '';
 
             data += '&lt;xpression&gt;\n';
@@ -225,7 +244,7 @@
          }
       }
    }
-};
+}
 
 if (event.isMessageEvent()) {
    try {
@@ -251,137 +270,152 @@ if (event.isMessageEvent()) {
                imagePath = 'Images/';
                imageExt = '.png';
 
-               if (requestedGPI == 'connect/icon.png') {
-                  imageName = 'RS_ICON_SMALL';
-               } else if (requestedGPI == 'connect/sle.png') {
-                  imageName = 'sle-icon';
-               } else if (requestedGPI == 'connect/ross.png') {
-                  imageName = 'ross-r-red';
-               } else if (requestedGPI == 'connect/rocket.png') {
-                  imageName = 'RS_ICON_SMALL';
-               } else if (requestedGPI == 'connect/cog.png') {
-                  imageName = 'cog';
-               } else if (requestedGPI == 'connect/devices.png') {
-                  imageName = 'devices';
-               } else if (requestedGPI == 'connect/cfl.png') {
-                  imageName = 'strategy';
-               } else if (requestedGPI == 'connect/lax.png') {
-                  imageName = 'racquetball';
-               } else if (requestedGPI == 'connect/mlb.png') {
-                  imageName = 'baseball-bat';
-               } else if (requestedGPI == 'connect/nba.png') {
-                  imageName = 'basketball-hoop-outline';
-               } else if (requestedGPI == 'connect/ncaa.png') {
-                  imageName = 'school';
-               } else if (requestedGPI == 'connect/nfl.png') {
-                  imageName = 'football';
-               } else if (requestedGPI == 'connect/nhl.png') {
-                  imageName = 'hockey-sticks';
-               } else if (requestedGPI == 'connect/soc.png') {
-                  imageName = 'soccer';
-               } else if (requestedGPI == 'connect/wnba.png') {
-                  imageName = 'basketball';
-               } else if (requestedGPI == 'connect/misc.png') {
-                  imageName = 'dumbbell';
-               } else if (requestedGPI == 'connect/monitor.png') {
-                  imageName = 'monitor';
-               } else if (requestedGPI == 'connect/xpn.png') {
-                  imageName = 'xpn';
-               } else if (requestedGPI == 'connect/projector-screen.png') {
-                  imageName = 'projector-screen';
-               }
+               // SEE IF THIS IS LEAGUE RELATED
+               if (requestedGPI.toUpperCase().includes('LEAGUES/ICON')) {
+                  var msgArr = null;
+                  var leagueValue = null;
 
-               imageFullPath = imagePath + imageName + imageExt;
+                  // SPLIT MESSAGE
+                  msgArr = requestedGPI.split('/');
+
+                  // GET THE IMAGE
+                  leagueValue = msgArr[(msgArr.length - 1)];
+
+                  // REMOVE THE EXTENSION
+                  leagueValue = leagueValue.replace('.png', '');
+               }
+               // OTHERWISE, GO TO THE HARD-CODED FILE
+               else {
+                  if (requestedGPI == 'connect/icon.png') {
+                     imageName = 'RS_ICON_SMALL';
+                  }
+                  else if (requestedGPI == 'connect/sle.png') {
+                     imageName = 'sle-icon';
+                  }
+                  else if (requestedGPI == 'connect/ross.png') {
+                     imageName = 'ross-r-red';
+                  }
+                  else if (requestedGPI == 'connect/rocket.png') {
+                     imageName = 'RS_ICON_SMALL';
+                  }
+                  else if (requestedGPI == 'connect/cog.png') {
+                     imageName = 'cog';
+                  }
+                  else if (requestedGPI == 'connect/devices.png') {
+                     imageName = 'devices';
+                  }
+                  else if (requestedGPI == 'connect/cfl.png') {
+                     imageName = 'strategy';
+                  }
+                  else if (requestedGPI == 'connect/lax.png') {
+                     imageName = 'racquetball';
+                  }
+                  else if (requestedGPI == 'connect/mlb.png') {
+                     imageName = 'baseball-bat';
+                  }
+                  else if (requestedGPI == 'connect/nba.png') {
+                     imageName = 'basketball-hoop-outline';
+                  }
+                  else if (requestedGPI == 'connect/ncaa.png') {
+                     imageName = 'school';
+                  }
+                  else if (requestedGPI == 'connect/nfl.png') {
+                     imageName = 'football';
+                  }
+                  else if (requestedGPI == 'connect/nhl.png') {
+                     imageName = 'hockey-sticks';
+                  }
+                  else if (requestedGPI == 'connect/soc.png') {
+                     imageName = 'soccer';
+                  }
+                  else if (requestedGPI == 'connect/wnba.png') {
+                     imageName = 'basketball';
+                  }
+                  else if (requestedGPI == 'connect/misc.png') {
+                     imageName = 'dumbbell';
+                  }
+                  else if (requestedGPI == 'connect/monitor.png') {
+                     imageName = 'monitor';
+                  }
+                  else if (requestedGPI == 'connect/xpn.png') {
+                     imageName = 'xpn';
+                  }
+                  else if (requestedGPI == 'connect/projector-screen.png') {
+                     imageName = 'projector-screen';
+                  }
+
+                  imageFullPath = imagePath + imageName + imageExt;
+               }
             }
 
             if (requestedGPI == 'connect/frame-list.xml') {
-               // self params
-               responseText = generateConnection.frameList.broadcastEquipment(
-                  'SVRPNL',
-                  'Server Panel',
-                  hostAddr,
-                  '5254',
-                  'http://' + hostAddr + ':' + portInfo + '/connect/rocket.png'
-               );
-
-               responseText += generateConnection.frameList.structure(
-                  'SVRPNL_CONTEXT',
-                  'Context',
-                  'http://' + hostAddr + ':' + portInfo + '/connect/params/frame-list.xml',
-                  'http://' + hostAddr + ':' + portInfo + '/connect/cog.png'
-               );
+               responseText = generateConnection.frameList.broadcastEquipment('SVR', 'Server', hostAddr, '5254', 'http://' + hostAddr + ':' + portInfo + '/connect/rocket.png');
+               responseText += generateConnection.frameList.broadcastEquipment('CTX', 'Client', hostAddr, '5255', 'http://' + hostAddr + ':' + portInfo + '/connect/nhl.png');
 
                responseText = generateConnection.frameList.children(responseText);
                responseText = generateConnection.frameList.properties(responseText);
                responseText = generateConnection.frameList.xml(responseText);
-            } else if (requestedGPI == 'connect/params/frame-list.xml') {
-               // LOOP THROUGH THE PARAMS
-               paramsGrp = generateConnection.frameList.broadcastEquipment(
-                  'SVRPNL_CONTEXT',
-                  'Context Params',
-                  hostAddr,
-                  '5255',
-                  'http://' + hostAddr + ':' + portInfo + '/connect/devices.png'
-               );
             }
 
-            responseText = generateConnection.frameList.children(paramsGrp);
+            else if (requestedGPI == 'connect/params/frame-list.xml') {
+               responseText = generateConnection.frameList.broadcastEquipment('SVR', 'Server', hostAddr, '5254', 'http://' + hostAddr + ':' + portInfo + '/connect/rocket.png');
+               responseText += generateConnection.frameList.broadcastEquipment('CTX', 'Client', hostAddr, '5255', 'http://' + hostAddr + ':' + portInfo + '/connect/nhl.png');
+
+               responseText = generateConnection.frameList.children(paramsGrp);
+               responseText = generateConnection.frameList.properties(responseText);
+               responseText = generateConnection.frameList.xml(responseText);
+            }
+         }
+
+         if (responseText == null) {
+            responseText = generateConnection.frameList.structure('rocket', 'Rocket Surgery', 'http://' + hostAddr + ':' + portInfo + '/connect/frame-list.xml', 'http://' + hostAddr + ':' + portInfo + '/connect/ross.png');
+
+            responseText = generateConnection.frameList.children(responseText);
             responseText = generateConnection.frameList.properties(responseText);
             responseText = generateConnection.frameList.xml(responseText);
          }
-      }
 
-      if (responseText == null) {
-         responseText = generateConnection.frameList.structure(
-            'ROCKET',
-            'Rocket Demo Panel',
-            'http://' + hostAddr + ':' + portInfo + '/connect/frame-list.xml',
-            'http://' + hostAddr + ':' + portInfo + '/connect/ross.png'
-         );
+         // SEE IF ITS AN IMAGE
+         if (contentType == 'image/png') {
+            var input = ogscript.createFileInput(imageFullPath);
+            try {
+               this.writeString('HTTP/1.1 200 OK\r\n', false);
+               this.writeString('Content-Type: ' + contentType + ';\r\n', false);
+               this.writeString('Connection: close\r\n', false);
+               this.writeString('Content-Length: ' + input.getSize() + '\r\n\r\n', false);
+               this.writeBytes(input.readBytes(input.getSize()));
+               input.close();
+            }
+            catch (e) {
+               responseText = 'Error processing the request.\n' + e;
 
-         responseText = generateConnection.frameList.children(responseText);
-         responseText = generateConnection.frameList.properties(responseText);
-         responseText = generateConnection.frameList.xml(responseText);
-      }
+               // CONVERT TO A MESSAGE BUILDER FOR LENGTH
+               var mb = ogscript.createMessageBuilder();
+               mb.writeString(responseText);
 
-      // SEE IF ITS AN IMAGE
-      if (contentType == 'image/png') {
-         var input = ogscript.createFileInput(imageFullPath);
-         try {
-            this.writeString('HTTP/1.1 200 OK\r\n', false);
-            this.writeString('Content-Type: ' + contentType + ';\r\n', false);
-            this.writeString('Connection: close\r\n', false);
-            this.writeString('Content-Length: ' + input.getSize() + '\r\n\r\n', false);
-            this.writeBytes(input.readBytes(input.getSize()));
-            input.close();
-         } catch (e) {
-            responseText = 'Error processing the request.\n' + e;
+               this.writeString('HTTP/1.1 500\r\n', false);
+               this.writeString('Content-Type: text/html; charset=utf-8\r\n', false);
+               this.writeString('Content-Length: ' + mb.toByteArray().length + '\r\n', false);
+               this.writeString('Connection: close\r\n\r\n', false);
 
+               input.close();
+            }
+         }
+         // OTHERWISE, ASSUME ITS TEXT
+         else {
             // CONVERT TO A MESSAGE BUILDER FOR LENGTH
             var mb = ogscript.createMessageBuilder();
             mb.writeString(responseText);
-
-            this.writeString('HTTP/1.1 500\r\n', false);
-            this.writeString('Content-Type: text/html; charset=utf-8\r\n', false);
+            
+            this.writeString('HTTP/1.1 ' + responseCode + '\r\n', false);
+            this.writeString('Content-Type: ' + contentType + '; charset=utf-8\r\n', false);
             this.writeString('Content-Length: ' + mb.toByteArray().length + '\r\n', false);
             this.writeString('Connection: close\r\n\r\n', false);
-
-            input.close();
+            this.writeString(responseText, false);
          }
       }
-      // OTHERWISE, ASSUME ITS TEXT
-      else {
-         // CONVERT TO A MESSAGE BUILDER FOR LENGTH
-         var mb = ogscript.createMessageBuilder();
-         mb.writeString(responseText);
-
-         this.writeString('HTTP/1.1 ' + responseCode + '\r\n', false);
-         this.writeString('Content-Type: ' + contentType + '; charset=utf-8\r\n', false);
-         this.writeString('Content-Length: ' + mb.toByteArray().length + '\r\n', false);
-         this.writeString('Connection: close\r\n\r\n', false);
-         this.writeString(responseText, false);
-      }
-   } catch (e) {
+   }
+   catch (e) {
       ogscript.debug('Error processing request:\n' + e);
       responseText = 'Error processing the request.\n' + e;
 
@@ -405,5 +439,13 @@ if (event.isMessageEvent()) {
          <label name="Port:" style="txt-align:east"/>
          <param expand="true" oid="000.SYS.PORT" showlabel="false"/>
       </simplegrid>
+   </abs>
+   <abs height="75" left="5" top="115" width="295">
+      <label height="30" left="5" name="Local Params" right="5" style="txt-align:center;" top="5"/>
+      <param bottom="5" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
+   </abs>
+   <abs height="75" left="5" top="195" width="295">
+      <label height="30" left="5" name="Global Params" right="5" style="txt-align:center;" top="5"/>
+      <param bottom="5" contextid="ctx" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
    </abs>
 </abs>
