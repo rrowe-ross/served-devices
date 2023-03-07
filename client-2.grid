@@ -19,7 +19,7 @@
       <param bottom="5" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
    </abs>
    <abs height="75" left="5" top="85" width="295">
-      <label height="30" left="5" name="Global Params" right="5" style="txt-align:center;" top="5"/>
+      <label height="30" left="5" name="Global/Context Params" right="5" style="txt-align:center;" top="5"/>
       <param bottom="5" contextid="ctx" expand="true" left="5" oid="toggle.demo" right="5" showlabel="false" top="40"/>
    </abs>
 </abs>
