@@ -9,7 +9,7 @@
       <param access="1" maxlength="0" name="Device Icon" oid="0xFF0C" stream="false" type="STRING" value="eo://0x2" widget="default"/>
       <param access="1" maxlength="0" name="000.SYS.HOST" oid="000.SYS.HOST" stream="true" type="STRING" value="192.168.0.5" widget="default"/>
       <param access="1" maxlength="0" name="000.SYS.PORT" oid="000.SYS.PORT" stream="true" type="STRING" value="5555" widget="default"/>
-      <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="0" widget="radio-toggle">
+      <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="2" widget="radio-toggle">
          <constraint key="0">Ow</constraint>
          <constraint key="1">Now</constraint>
          <constraint key="2">Brown</constraint>
@@ -30,7 +30,7 @@
          <param access="1" constrainttype="INT_NULL" name="DISPLAY_OPTIONS" oid="0xFF0B" precision="0" stream="false" type="INT16_ARRAY" value="0;1" widget="default"/>
          <param access="1" maxlength="0" name="PRODUCT_NAME" oid="0x0105" stream="false" type="STRING" value="CTX" widget="default"/>
          <param access="1" maxlength="0" name="PRODUCT_NAME_OVERRIDE" oid="0xFF01" stream="false" type="STRING" value="Context Panel" widget="text-display"/>
-         <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="2" widget="radio-toggle">
+         <param access="1" constrainttype="INT_CHOICE" name="toggle.demo" oid="toggle.demo" precision="0" type="INT32" value="1" widget="radio-toggle">
             <constraint key="0">Ow</constraint>
             <constraint key="1">Now</constraint>
             <constraint key="2">Brown</constraint>
@@ -351,7 +351,7 @@ if (event.isMessageEvent()) {
 
             if (requestedGPI == 'connect/frame-list.xml') {
                responseText = generateConnection.frameList.broadcastEquipment('SVR', 'Server', hostAddr, '5254', 'http://' + hostAddr + ':' + portInfo + '/connect/rocket.png');
-               responseText += generateConnection.frameList.broadcastEquipment('CTX', 'Client', hostAddr, '5255', 'http://' + hostAddr + ':' + portInfo + '/connect/nhl.png');
+               responseText += generateConnection.frameList.broadcastEquipment('CTX', 'Context', hostAddr, '5255', 'http://' + hostAddr + ':' + portInfo + '/connect/nhl.png');
 
                responseText = generateConnection.frameList.children(responseText);
                responseText = generateConnection.frameList.properties(responseText);
@@ -360,7 +360,7 @@ if (event.isMessageEvent()) {
 
             else if (requestedGPI == 'connect/params/frame-list.xml') {
                responseText = generateConnection.frameList.broadcastEquipment('SVR', 'Server', hostAddr, '5254', 'http://' + hostAddr + ':' + portInfo + '/connect/rocket.png');
-               responseText += generateConnection.frameList.broadcastEquipment('CTX', 'Client', hostAddr, '5255', 'http://' + hostAddr + ':' + portInfo + '/connect/nhl.png');
+               responseText += generateConnection.frameList.broadcastEquipment('CTX', 'Context', hostAddr, '5255', 'http://' + hostAddr + ':' + portInfo + '/connect/nhl.png');
 
                responseText = generateConnection.frameList.children(paramsGrp);
                responseText = generateConnection.frameList.properties(responseText);
